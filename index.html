@@ -52,33 +52,56 @@
             How can I help you?
           </label>
           <div class="relative">
-            <input
+            <textarea
                 name="prompt"
                 id="prompt"
-                class="border bg-white p-4 rounded-lg w-full text-xl mb-2"
+                class="border bg-white p-4 rounded-lg w-full text-lg mb-2 resize-none overflow-hidden min-h-[60px] max-h-[200px]"
                 placeholder="Ask anything"
-            />
-            <button
-                id="submit"
-                type="submit"
-                aria-label="Send"
-                class="cursor-pointer absolute top-1/2 right-5 transform -translate-x-1/2 -translate-y-1/2"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    class="w-10 h-10"
+                rows="1"
+            ></textarea>
+            <div class="absolute top-4 right-2 flex items-center gap-2">
+                <button
+                    type="button"
+                    id="clear-input"
+                    aria-label="Clear"
+                    class="size-[26px] rounded-md p-1 hover:bg-red-100 hover:text-pink-500 hover:size-7 cursor-pointer"
                 >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                    />
-                </svg>
-            </button>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="red"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
+                <button
+                    id="submit"
+                    type="submit"
+                    aria-label="Send"
+                    class="cursor-pointer"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        class="w-10 h-10"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                        />
+                    </svg>
+                </button>
+            </div>
           </div>
           <div class="flex items-center gap-2">
             <label for="model-select" class="text-white sm:text-xs text-base">Agent Model:</label>

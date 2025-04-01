@@ -10,6 +10,26 @@ const app = document.querySelector('#app')
 const submitBtn = document.querySelector('#submit') as HTMLButtonElement
 const form = document.querySelector('#form')
 const modelSelect = document.querySelector('#model-select') as HTMLSelectElement
+const clearBtn = document.querySelector('#clear-input') as HTMLButtonElement
+const promptInput = document.querySelector<HTMLTextAreaElement>('#prompt')
+
+// Auto-resize textarea
+const resizeTextarea = () => {
+    if (promptInput) {
+        promptInput.style.height = 'auto'
+        promptInput.style.height = promptInput.scrollHeight + 'px'
+    }
+}
+
+promptInput?.addEventListener('input', resizeTextarea)
+
+clearBtn?.addEventListener('click', () => {
+    if (promptInput) {
+        promptInput.value = ''
+        promptInput.style.height = 'auto'
+        promptInput.focus()
+    }
+})
 
 form?.addEventListener('submit', async e => {
     e.preventDefault();
