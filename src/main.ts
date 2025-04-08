@@ -21,27 +21,21 @@ const resizeTextarea = () => {
     }
 }
 
-promptInput?.addEventListener('input', resizeTextarea)
+// Handle form submission
+const handleSubmit = async (e?: Event) => {
+    if (e) e.preventDefault();
 
-clearBtn?.addEventListener('click', () => {
-    if (promptInput) {
-        promptInput.value = ''
-        promptInput.style.height = 'auto'
-        promptInput.focus()
-    }
-})
+    const prompt = promptInput?.value;
 
-form?.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    const prompt = document.querySelector<HTMLInputElement>('#prompt')?.value;
-
-    if(prompt?.trim() === '') {
-        alert('Query cannot be empty')
+    if (!prompt?.trim()) {
+        promptInput?.classList.add('shake')
+        setTimeout(() => promptInput?.classList.remove('shake'), 500)
         return
     }
 
     submitBtn!.disabled = true
+    submitBtn!.classList.add('opacity-50')
+    
     const result = streamText({
         model: openrouter(modelSelect.value),
         temperature: 0,
@@ -69,5 +63,30 @@ form?.addEventListener('submit', async e => {
     for await ( const text of result.textStream ) {
         app?.append(text)
     }
-    submitBtn.disabled = false
+    
+    submitBtn!.disabled = false
+    submitBtn!.classList.remove('opacity-50')
+    promptInput!.value = ''
+    resizeTextarea()
+}
+
+// Event Listeners
+promptInput?.addEventListener('input', resizeTextarea)
+
+// Add Enter key support
+promptInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && !submitBtn.disabled) {
+        e.preventDefault()
+        form?.dispatchEvent(new Event('submit'))
+    }
 })
+
+clearBtn?.addEventListener('click', () => {
+    if (promptInput) {
+        promptInput.value = ''
+        promptInput.style.height = 'auto'
+        promptInput.focus()
+    }
+})
+
+form?.addEventListener('submit', handleSubmit)
