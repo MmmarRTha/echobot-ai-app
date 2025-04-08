@@ -1,1 +1,41 @@
 @import 'tailwindcss';
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.2s ease-in-out 0s 2;
+}
+
+/* Smooth transitions */
+button {
+    transition: all 0.2s ease-in-out;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+/* Hover effects */
+button:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+/* Focus styles */
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Placeholder styles */
+textarea::placeholder {
+    color: #9CA3AF;
+    transition: opacity 0.2s ease-in-out;
+}
+
+textarea:focus::placeholder {
+    opacity: 0.5;
+}
