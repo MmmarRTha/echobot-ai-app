@@ -6,8 +6,17 @@
     75% { transform: translateX(5px); }
 }
 
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .shake {
     animation: shake 0.2s ease-in-out 0s 2;
+}
+
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out;
 }
 
 /* Smooth transitions */
@@ -38,4 +47,18 @@ textarea::placeholder {
 
 textarea:focus::placeholder {
     opacity: 0.5;
+}
+
+/* Weather widget specific styles */
+.weather-widget {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.weather-widget button {
+    transition: all 0.2s ease-in-out;
+}
+
+.weather-widget button:hover {
+    transform: scale(1.05);
 }

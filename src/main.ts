@@ -1,6 +1,7 @@
 import "./style.css";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { streamText } from "ai";
+import { WeatherWidget } from "./weather/weatherWidget";
 
 const openrouter = createOpenRouter({
   apiKey: import.meta.env.VITE_OPENROUTER_KEY,
@@ -14,6 +15,15 @@ const modelSelect = document.querySelector(
 ) as HTMLSelectElement;
 const clearBtn = document.querySelector("#clear-input") as HTMLButtonElement;
 const promptInput = document.querySelector<HTMLTextAreaElement>("#prompt");
+
+// Weather widget initialization
+const weatherContainer = document.querySelector("#weather-container");
+let weatherWidget: WeatherWidget | null = null;
+
+if (weatherContainer instanceof HTMLElement) {
+  weatherWidget = new WeatherWidget(weatherContainer);
+  weatherWidget.initialize();
+}
 
 // Auto-resize textarea
 const resizeTextarea = () => {
