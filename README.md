@@ -1,6 +1,6 @@
 # AI EchoBot - Interactive AI Chat Application
 
-A modern, responsive AI chat application that leverages multiple state-of-the-art language models through OpenRouter's API. Built with TypeScript, Vite, and Tailwind CSS.
+A modern, responsive AI chat application that leverages multiple state-of-the-art language models through OpenRouter's API. With a Live Weather Widget powered by an MCP server built from scratch. Tech Stack: Html, Css, TypeScript, Vite, and Tailwind CSS.
 
 ## 🌟 Features
 
