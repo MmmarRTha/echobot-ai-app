@@ -1,10 +1,25 @@
-import { WeatherService, WeatherData } from "./weather";
+import {
+  WeatherService,
+  WeatherData,
+  WeatherStatus,
+  WEATHER_ICONS,
+} from "./weather";
+
+type WeatherCurrent = {
+  rain: number;
+  cloud_cover: number;
+  is_day: string; // 'Day' | 'Night'
+};
+
+// Cloud cover threshold constants
+const CLOUD_COVER_HEAVY = 70;
+const CLOUD_COVER_PARTIAL = 30;
 
 export class WeatherWidget {
   private container: HTMLElement;
   private weatherService: WeatherService;
   private isVisible = false;
-  private currentCity: string = "CDMX";
+  private currentCity: string = "Tijuana";
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -12,6 +27,7 @@ export class WeatherWidget {
   }
 
   async initialize(): Promise<void> {
+    this.renderLoading();
     try {
       // Try to get user's location
       const position = await this.getCurrentPosition();
@@ -58,12 +74,17 @@ export class WeatherWidget {
       const data = await response.json();
       return data.name || "Unknown City";
     } catch (error) {
-      return "Mexico City"; // Fallback
+      return "Tijuana"; // Fallback
     }
   }
 
   private render(weather: WeatherData): void {
-    const icon = this.getWeatherIcon(weather.current);
+    // Convert rain and cloud_cover to numbers for type safety
+    const icon = this.getWeatherIcon({
+      rain: Number(weather.current.rain.replace(/[^\d.-]/g, "")),
+      cloud_cover: Number(weather.current.cloud_cover.replace(/[^\d.-]/g, "")),
+      is_day: weather.current.is_day,
+    });
 
     this.container.innerHTML = `
       <div class="weather-widget bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-white/20 rounded-xl p-4 shadow-lg animate-fade-in">
@@ -105,11 +126,11 @@ export class WeatherWidget {
         
         <div class="mt-3 flex justify-between items-center">
           <button id="refresh-weather" class="text-white/70 hover:text-white text-sm transition-colors flex items-center gap-1">
-            <span>��</span>
+            <span>icon</span>
             <span>Refresh</span>
           </button>
           <button id="change-city" class="text-white/70 hover:text-white text-sm transition-colors flex items-center gap-1">
-            <span>��</span>
+            <span>icon</span>
             <span>Change City</span>
           </button>
         </div>
@@ -120,12 +141,13 @@ export class WeatherWidget {
     this.isVisible = true;
   }
 
-  private getWeatherIcon(current: any): string {
-    // Determine icon based on weather conditions
-    if (current.rain > 0) return "��️";
-    if (current.cloud_cover > 70) return "☁️";
-    if (current.cloud_cover > 30) return "⛅";
-    return current.is_day === "Day" ? "☀️" : "🌙";
+  private getWeatherIcon(current: WeatherCurrent): string {
+    if (current.rain > 0) return WEATHER_ICONS[WeatherStatus.Rain];
+    if (current.cloud_cover > CLOUD_COVER_HEAVY)
+      return WEATHER_ICONS[WeatherStatus.Cloudy];
+    if (current.cloud_cover > CLOUD_COVER_PARTIAL)
+      return WEATHER_ICONS[WeatherStatus.PartlyCloudy];
+    return current.is_day === "Day" ? WEATHER_ICONS[WeatherStatus.Clear] : "🌙";
   }
 
   private renderError(message: string): void {
@@ -140,10 +162,10 @@ export class WeatherWidget {
           </button>
         </div>
         <div class="text-center text-white/80">
-          <div class="text-2xl mb-2">��️</div>
+          <div class="text-2xl mb-2">🌧️</div>
           <div>${message}</div>
           <button id="retry-weather" class="mt-2 text-white/70 hover:text-white text-sm transition-colors">
-            �� Retry
+            Retry
           </button>
         </div>
       </div>
@@ -194,7 +216,16 @@ export class WeatherWidget {
     }
   }
 
+  private renderLoading(): void {
+    this.container.innerHTML = `
+      <div class="weather-widget bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-white/20 rounded-xl p-4 shadow-lg animate-fade-in flex items-center justify-center min-h-[100px]">
+        <span class="text-white text-lg">Loading weather...</span>
+      </div>
+    `;
+  }
+
   async refresh(): Promise<void> {
+    this.renderLoading();
     try {
       const weatherData = await this.weatherService.getWeatherByCity(
         this.currentCity
