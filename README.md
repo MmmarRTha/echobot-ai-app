@@ -21,6 +21,7 @@ A modern, responsive AI chat application that leverages multiple state-of-the-ar
   - Vite for fast development
   - Tailwind CSS for styling
   - Environment variable support
+- **Live Weather Widget**: Real-time weather information for your current or selected city, powered by the MCP server and Open-Meteo API. The widget is always visible at the bottom-right of the app.
 
 ## 🚀 Tech Stack
 
@@ -30,6 +31,11 @@ A modern, responsive AI chat application that leverages multiple state-of-the-ar
 - **AI Integration**: OpenRouter API
 - **Build Tools**: Vite
 - **Package Manager**: npm/yarn
+- **Weather Integration**:
+  - **MCP Server**: Handles weather data requests and validation
+  - **Weather API**: Open-Meteo API for geocoding and weather forecasts
+  - **Validation**: Zod for runtime API response validation
+  - **UI**: Weather widget with animated, responsive design, always visible at the bottom-right
 
 ## 🛠️ Installation
 
@@ -60,6 +66,13 @@ npm run dev
 2. Type your question in the input field
 3. Click the send button or press Enter
 4. Watch as the AI responds in real-time
+
+### Weather Widget
+
+1. The weather widget automatically fetches your location (with permission) and displays current weather for your city.
+2. You can change the city using the widget's interface.
+3. Weather data is fetched via the MCP server, which validates responses for safety and reliability.
+4. The widget is always accessible at the bottom-right of the app.
 
 ## 📱 Responsive Design
 
