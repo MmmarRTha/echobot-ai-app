@@ -87,9 +87,9 @@ export class WeatherWidget {
     });
 
     this.container.innerHTML = `
-      <div class="weather-widget bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-white/20 rounded-xl p-4 shadow-lg animate-fade-in">
+      <div class="weather-widget bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-white/20 rounded-xl p-3 shadow-lg animate-fade-in">
         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-white font-semibold text-lg">${weather.city}</h3>
+          <h2 class="text-white font-semibold text-xl">${weather.city}</h2>
           <button id="weather-toggle" class="text-white/70 hover:text-white transition-colors" title="Toggle weather widget">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -98,22 +98,22 @@ export class WeatherWidget {
         </div>
         
         <div class="weather-main mb-4">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="text-4xl">${icon}</span>
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">${icon}</span>
               <div>
-                <div class="text-3xl font-bold text-white">${weather.current.temperature}</div>
-                <div class="text-white/80 text-sm">${weather.current.is_day}</div>
+                <div class="text-base font-bold text-white">${weather.current.temperature}</div>
+                <div class="text-white/80 text-xs">${weather.current.is_day}</div>
               </div>
             </div>
-            <div class="text-right text-white/80 text-sm">
+            <div class="text-right text-white/80 text-xs pl-3">
               <div>Precipitation: ${weather.current.precipitation}</div>
               <div>Cloud Cover: ${weather.current.cloud_cover}</div>
             </div>
           </div>
         </div>
         
-        <div class="weather-details grid grid-cols-2 gap-3 text-sm">
+        <div class="weather-details grid grid-cols-2 gap-3 text-xs text-center">
           <div class="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
             <div class="text-white/60">Wind</div>
             <div class="text-white font-medium">${weather.current.wind_speed}</div>
@@ -125,12 +125,20 @@ export class WeatherWidget {
         </div>
         
         <div class="mt-3 flex justify-between items-center">
-          <button id="refresh-weather" class="text-white/70 hover:text-white text-sm transition-colors flex items-center gap-1">
-            <span>icon</span>
+          <button id="refresh-weather" class="text-white/70 hover:text-white text-xs transition-colors flex items-center gap-1">
+            <span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+            </span>
             <span>Refresh</span>
           </button>
-          <button id="change-city" class="text-white/70 hover:text-white text-sm transition-colors flex items-center gap-1">
-            <span>icon</span>
+          <button id="change-city" class="text-white/70 hover:text-white text-xs transition-colors flex items-center gap-1">
+            <span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            </svg>
+            </span>
             <span>Change City</span>
           </button>
         </div>
