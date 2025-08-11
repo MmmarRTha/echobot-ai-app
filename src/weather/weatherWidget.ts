@@ -69,10 +69,10 @@ export class WeatherWidget {
   private async getCityFromCoords(lat: number, lon: number): Promise<string> {
     try {
       const response = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${lat}&longitude=${lon}&language=en`
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
       );
       const data = await response.json();
-      return data.name || "Unknown City";
+      return data.city || "Unknown City";
     } catch (error) {
       return "Tijuana"; // Fallback
     }
