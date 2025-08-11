@@ -6,9 +6,10 @@ A modern, responsive AI chat application that leverages multiple state-of-the-ar
 
 - **Multi-Model Support**: Seamlessly switch between different AI models:
   - Meta Llama 3 70B
-  - Google Gemma 3B
-  - Google Gemini Flash
-  - Mistral AI
+  - Google Gemma 3 12B
+  - DeepSeek R1 0528
+  - Mistral Small 24B
+  - OpenAI GPT-OSS 20B
 
 - **Real-time Streaming**: Experience instant responses with streaming text output
 - **Modern UI/UX**: 
