@@ -8,7 +8,7 @@
   </head>
 
   <body
-    class="bg-gradient-to-r from-gray-900 via-blue-900 to-slate-800 min-h-screen flex flex-col"
+    class="bg-linear-to-r from-gray-900 via-blue-900 to-slate-800 min-h-screen flex flex-col"
   >
     <div class="max-w-2xl mx-auto flex flex-col flex-1 w-full">
       <!-- Weather Widget Container -->
@@ -127,7 +127,7 @@
           </svg>
         </div>
         <h1
-          class="inline-block text-6xl md:text-8xl font-bold bg-gradient-to-l from-amber-700 to-yellow-300 bg-clip-text text-transparent text-center my-6"
+          class="inline-block text-6xl md:text-8xl font-bold bg-linear-to-l from-amber-700 to-yellow-300 bg-clip-text text-transparent text-center my-6"
         >
           AI EchoBot
         </h1>
@@ -143,7 +143,7 @@
           <textarea
             name="prompt"
             id="prompt"
-            class="border bg-white p-4 rounded-lg w-full text-lg mb-2 resize-none overflow-hidden min-h-[60px] max-h-[200px]"
+            class="border bg-white p-4 rounded-lg w-full text-lg mb-2 resize-none overflow-hidden min-h-15 max-h-50"
             placeholder="Ask anything"
             rows="1"
           ></textarea>
@@ -152,7 +152,7 @@
               type="button"
               id="clear-input"
               aria-label="Clear"
-              class="size-[24px] rounded-md p-1 hover:bg-red-100 hover:text-pink-500 cursor-pointer"
+              class="size-6 rounded-md p-1 hover:bg-red-100 hover:text-pink-500 cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -198,17 +198,17 @@
             <option value="meta-llama/llama-3.3-70b-instruct:free" class="bg-gray-800">
               Llama 3 70B
             </option>
-            <option value="google/gemma-3-12b-it:free" class="bg-gray-800">
-              Gemma 3 12B
+            <option value="google/gemma-3-27b-it:free" class="bg-gray-800">
+              Gemma 3 27B
             </option>
             <option value="deepseek/deepseek-r1-0528:free" class="bg-gray-800">
               DeepSeek R1 0528
             </option>
-            <option value="mistralai/mistral-small-3.2-24b-instruct:free" class="bg-gray-800">
+            <option value="mistralai/mistral-small-3.1-24b-instruct:free" class="bg-gray-800">
               Mistral Small 24B
             </option>
-            <option value="openai/gpt-oss-20b:free" class="bg-gray-800">
-              OpenAI GPT-OSS 20B
+            <option value="openai/gpt-oss-120b:free" class="bg-gray-800">
+              OpenAI GPT-OSS 120B
             </option>
           </select>
         </div>
