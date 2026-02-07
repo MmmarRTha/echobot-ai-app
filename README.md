@@ -6,10 +6,10 @@ A modern, responsive AI chat application that leverages multiple state-of-the-ar
 
 - **Multi-Model Support**: Seamlessly switch between different AI models:
   - Meta Llama 3 70B
-  - Google Gemma 3 12B
+  - Google Gemma 3 27B
   - DeepSeek R1 0528
   - Mistral Small 24B
-  - OpenAI GPT-OSS 20B
+  - OpenAI GPT-OSS 120B
 
 - **Real-time Streaming**: Experience instant responses with streaming text output
 - **Modern UI/UX**: 
@@ -31,12 +31,13 @@ A modern, responsive AI chat application that leverages multiple state-of-the-ar
 - **Styling**: Tailwind CSS
 - **AI Integration**: OpenRouter API
 - **Build Tools**: Vite
-- **Package Manager**: npm/yarn
+- **Package Manager**: pnpm
 - **Weather Integration**:
   - **MCP Server**: Handles weather data requests and validation
   - **Weather API**: Open-Meteo API for geocoding and weather forecasts
   - **Validation**: Zod for runtime API response validation
   - **UI**: Weather widget with animated, responsive design, always visible at the bottom-right
+> The project includes a `.tool-versions` file for automatic Node version management via asdf.
 
 ## 🛠️ Installation
 
@@ -48,7 +49,7 @@ cd echobot-ai-app
 
 2. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 3. Create a `.env` file in the root directory:
@@ -58,7 +59,7 @@ VITE_OPENROUTER_KEY=your_openrouter_api_key
 
 4. Start the development server:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## 🔧 Usage
